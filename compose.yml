@@ -1,0 +1,25 @@
+services:
+  php:
+    build: .docker
+    ports:
+      - '80:80'
+    depends_on:
+      - bun
+    volumes:
+      - .:/var/www
+      - ./public/.htaccess.docker:/var/www/public/.htaccess
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  bun:
+    image: oven/bun
+    ports:
+      - '5173:5173'
+    working_dir: '/app'
+    volumes:
+      - .:/app
+    command: bash -c "bun install && bun run dev --host"
+
+  docker-host:
+    image: qoomon/docker-host
+    cap_add: [ 'NET_ADMIN', 'NET_RAW' ]
