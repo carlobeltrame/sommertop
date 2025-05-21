@@ -4,46 +4,80 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        {{-- Inline script to detect system dark mode preference and apply it immediately --}}
-        <script>
-            (function() {
-                const appearance = '{{ $appearance ?? "system" }}';
+        <title inertia>Digitale Unterlagen Sommertopkurs</title>
 
-                if (appearance === 'system') {
-                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-                    if (prefersDark) {
-                        document.documentElement.classList.add('dark');
-                    }
-                }
-            })();
-        </script>
-
-        {{-- Inline style to set the HTML background color based on our theme in app.css --}}
         <style>
-            html {
-                background-color: oklch(1 0 0);
-            }
-
-            html.dark {
-                background-color: oklch(0.145 0 0);
-            }
+            @import url('https://fonts.googleapis.com/css?family=Lato');
+            html { font-family: 'Lato', sans-serif; }
         </style>
 
-        <title inertia>{{ config('app.name', 'Laravel') }}</title>
-
-        <link rel="icon" href="/favicon.ico" sizes="any">
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-
         @routes
-        @vite(['resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
-        @inertiaHead
+        @vite(['resources/js/app.ts'])
+        @yield('head')
     </head>
-    <body class="font-sans antialiased">
-        @inertia
+    <body class="bg-gray-100 dark:bg-gray-900 font-sans antialiased tracking-wider">
+
+        <nav id="header" aria-labelledby="main-title" class="fixed w-full z-10 top-0 bg-white dark:bg-gray-800 border-b border-gray-400 dark:border-gray-200">
+            <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-4">
+                <div class="pl-4 flex items-center">
+                    <svg class="h-5 pr-3 fill-current text-purple-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path d="M0 2C0 .9.9 0 2 0h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm14 12h4V2H2v12h4c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2zM5 9l2-2 2 2 4-4 2 2-6 6-4-4z"/>
+                    </svg>
+                    <h1>
+                        <a id="main-title" class="text-gray-900 dark:text-gray-100 no-underline hover:no-underline font-extrabold text-xl"  href="/">
+                            Digitale Unterlagen Sommertopkurs
+                        </a>
+                    </h1>
+                </div>
+                $topMenu
+            </div>
+        </nav>
+        <!--Container-->
+        <div class="container w-full flex flex-wrap mx-auto px-2 pt-8 lg:pt-16 mt-16">
+            <nav id="sidebar" title="Sidebar" class="w-full lg:w-1/5 lg:px-6 text-xl text-gray-800 dark:text-gray-200 leading-normal">
+                $sidebar
+            </nav>
+            <div class="w-full lg:w-4/5 p-8 mt-6 lg:mt-0 text-gray-900 dark:text-gray-100 leading-normal bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-600 border-rounded">
+                <main class="prose dark:prose-invert">
+                    @yield('content')
+                </main>
+            </div>
+        </div>
+
+        <script>
+            var mobileNav = document.getElementById("nav-content");
+            var mobileNavToggle = document.getElementById("nav-toggle");
+
+            document.onclick = check;
+
+            function check(e){
+                var target = (e && e.target) || (event && event.srcElement);
+
+
+                //Nav Menu
+                if (!checkParent(target, mobileNav)) {
+                    // click NOT on the menu
+                    if (checkParent(target, mobileNavToggle)) {
+                        // click on the link
+                        if (mobileNav.classList.contains("hidden")) {
+                            mobileNav.classList.remove("hidden");
+                        } else {mobileNav.classList.add("hidden");}
+                    } else {
+                        // click both outside link and outside menu, hide menu
+                        mobileNav.classList.add("hidden");
+                    }
+                }
+            }
+
+            function checkParent(t, elm) {
+                while(t.parentNode) {
+                    if( t == elm ) {return true;}
+                    t = t.parentNode;
+                }
+                return false;
+            }
+
+
+        </script>
     </body>
 </html>
