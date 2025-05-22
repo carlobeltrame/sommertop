@@ -1,15 +1,14 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/{dirSlug}/{file}', [PageController::class, 'download'])->where('file', '.*')->name('download');
+Route::get('/{dirSlug}', [PageController::class, 'list'])->name('page');
 
-require __DIR__.'/settings.php';
-require __DIR__.'/auth.php';
+//require __DIR__.'/settings.php';
+//require __DIR__.'/auth.php';

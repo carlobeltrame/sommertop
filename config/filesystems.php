@@ -60,6 +60,11 @@ return [
             'report' => false,
         ],
 
+        'content' => [
+            'driver' => 'local',
+            'root' => storage_path('app/private/content'),
+        ]
+
     ],
 
     /*
