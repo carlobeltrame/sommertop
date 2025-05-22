@@ -13,6 +13,6 @@ fi
 
 chmod 777 -R storage bootstrap/cache
 
-#php artisan migrate
+php artisan migrate
 
 apache2-foreground
