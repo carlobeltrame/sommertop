@@ -72,3 +72,7 @@ Then, you can visit your local application at http://localhost
 1.  Visit the `sommertop.ch` website.
 2.  Navigate through the displayed folder structure, which mirrors the structure in the course leaders' Dropbox.
 3.  Click on files to view or download them.
+
+## License
+
+The Sommertop application is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
