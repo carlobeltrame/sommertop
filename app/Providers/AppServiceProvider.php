@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Providers\Dropbox\AutoRefreshingTokenProvider;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Filesystem\FilesystemAdapter;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
 use League\Flysystem\Filesystem;
@@ -27,8 +29,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Storage::extend('dropbox', function(Application $app, array $config) {
+            $tokenProvider = new AutoRefreshingTokenProvider(
+                Cache::get('dropbox_access_token', 'none') // reuse cached access token if available
+            );
+
             $adapter = new DropboxAdapter(
-                new DropboxClient($config['access_token']),
+                new DropboxClient($tokenProvider),
                 $config['root']
             );
 

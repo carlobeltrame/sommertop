@@ -63,9 +63,9 @@ return [
         'content' => [
             'driver' => env('STORAGE_LOCATION', 'local'),
             'root' => env('STORAGE_DIR', 'storage/app/private/content'),
-            'access_token' => env('DROPBOX_ACCESS_TOKEN'),
             'app_key' => env('DROPBOX_APP_KEY'),
             'app_secret' => env('DROPBOX_APP_SECRET'),
+            'refresh_token' => env('DROPBOX_REFRESH_TOKEN'),
             'case_sensitive' => false,
         ]
 
