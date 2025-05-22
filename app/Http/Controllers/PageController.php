@@ -10,12 +10,7 @@ class PageController extends Controller {
         $dir = $this->findDirBySlug($dirSlug);
         return view('page', [
             'title' => $dir,
-            'contents' => $this->getContents($dir)->map(function ($item) {
-                return [
-                    'name' => basename($item),
-                    'path' => $this->slug($item),
-                ];
-            }),
+            'contents' => $this->getContents($dir),
             'slug' => $dirSlug,
         ]);
     }
@@ -28,11 +23,23 @@ class PageController extends Controller {
         return Storage::disk('content')->download($file);
     }
 
-    private function getContents($dirname): Collection {
-        return $this->filterPublic(
-            collect(Storage::disk('content')->directories($dirname))
-                ->concat(Storage::disk('content')->files($dirname))
-        );
+    private function getContents($dirname, $level = 2): array {
+        $topLevelFiles = $this->files($dirname);
+        $subsections = $this->directories($dirname);
+        return [
+            'title' => basename($dirname),
+            'files' => $topLevelFiles->map(function ($file) { return $this->fileInfo($file); }),
+            'subsections' => $subsections->map(function ($subsection) use($level) {
+                return $this->getContents($subsection, $level + 1);
+            })
+        ];
+    }
+
+    private function fileInfo(string $file): array {
+        return [
+            'name' => basename($file),
+            'path' => $this->slug($file),
+        ];
     }
 
     private function findDirBySlug(string $slug): ?string {
@@ -67,5 +74,13 @@ class PageController extends Controller {
 
     private function piecewise(string $string, string $separator, callable $operation): string {
         return join($separator, array_map($operation, explode($separator, $string)));
+    }
+
+    private function files($dirname) {
+        return $this->filterPublic(collect(Storage::disk('content')->files($dirname)));
+    }
+
+    private function directories($dirname) {
+        return $this->filterPublic(collect(Storage::disk('content')->directories($dirname)));
     }
 }
