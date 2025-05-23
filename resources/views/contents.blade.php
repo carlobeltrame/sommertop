@@ -1,5 +1,5 @@
 <ul>
-    @foreach(collect($contents['files'])->sortBy('sortName') as $item)
+    @foreach(collect($contents['files'])->sortBy('sortName', SORT_NATURAL) as $item)
         @if(isset($item['type']) && $item['type'] === 'html')
             </ul>
                 {!! $item['html'] !!}
@@ -19,6 +19,6 @@
     @endforeach
 </ul>
 
-@foreach(collect($contents['subsections'])->sortBy('sortName') as $subsection)
+@foreach(collect($contents['subsections'])->sortBy('sortName', SORT_NATURAL) as $subsection)
     @include('subsection', ['contents' => $subsection])
 @endforeach
