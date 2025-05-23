@@ -25,7 +25,7 @@ class NavigationViewComposer
                 ->concat($this->files->directories('/'))
                 ->map(function($dir) {
                     return $this->files->directoryInfo($dir);
-                })
+                })->sortBy('sortName')
         );
         $view->with(
             'activePage',
