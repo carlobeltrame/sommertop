@@ -35,7 +35,7 @@ class FileService {
     }
 
     public function findDirBySlug(string $slug): ?string {
-        return $this->filterPublic(collect(Storage::disk('content')->directories('/')))
+        return $this->directories('/')
             ->first(function($dir) use ($slug) {
                 return $this->slug($dir) === $slug;
             });
@@ -43,16 +43,27 @@ class FileService {
 
     public function findFileBySlug(string $dir, string $pathSlug): ?string {
         $fullPathSlug = $this->slug($dir) . '/' . $pathSlug;
-        return $this->filterPublic(collect(Storage::disk('content')->files($dir)))
+        return $this->files($dir)
             ->first(function($file) use ($fullPathSlug) {
                 return $this->slug($file) === $fullPathSlug;
             });
     }
 
-    public function filterPublic(Collection $files): Collection {
+    protected function filterPublic(Collection $files): Collection {
         return $files->filter(function ($file) {
             if (preg_match('/^\.|\/\./', $file)) return false;
             return true;
+        });
+    }
+
+    protected function filterWithin(string $dir, Collection $files): Collection {
+        if (!Str::endsWith($dir, '/')) $dir = $dir . '/';
+        $dir = preg_replace('/^\/*/', '', $dir); // remove any leading slashes
+        $quotedDir = preg_quote($dir, '/');
+        $regexp = "/^{$quotedDir}[^\/]+$/";
+        return $files->filter(function ($file) use ($regexp) {
+            $result = preg_match($regexp, $file);
+            return $result;
         });
     }
 
@@ -64,15 +75,21 @@ class FileService {
         });
     }
 
-    public function piecewise(string $string, string $separator, callable $operation): string {
+    protected function piecewise(string $string, string $separator, callable $operation): string {
         return join($separator, array_map($operation, explode($separator, $string)));
     }
 
     public function files($dirname) {
-        return $this->filterPublic(collect(Storage::disk('content')->files($dirname)));
+        return $this->filterWithin(
+            $dirname,
+            $this->filterPublic(collect(Storage::disk('content')->allFiles()))
+        );
     }
 
     public function directories($dirname) {
-        return $this->filterPublic(collect(Storage::disk('content')->directories($dirname)));
+        return $this->filterWithin(
+            $dirname,
+            $this->filterPublic(collect(Storage::disk('content')->allDirectories()))
+        );
     }
 }
