@@ -43,7 +43,7 @@ class FileService {
                 $html = $converter->convert($html);
             }
             return [
-                'type' => 'html',
+                'type' => Str::endsWith($file, ['.list.md', '.list.html']) ? 'list-html' : 'html',
                 'sortName' => $this->sortName($file),
                 'html' => $html,
             ];

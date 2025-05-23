@@ -5,14 +5,16 @@
                 {!! $item['html'] !!}
             <ul>
         @elseif(isset($item['type']) && $item['type'] === 'audio')
-            <li class="py-2">
+            <li class="pt-2">
                 <a target="_blank" href="{{ $item['path'] }}">{{ $item['displayName'] }}</a><br/>
                 <audio controls preload="none">
                     <source src="{{ $item['path'] }}">
                 </audio>
             </li>
+        @elseif(isset($item['type']) && $item['type'] === 'list-html')
+            <li class="pt-2">{!! $item['html'] !!}</li>
         @else
-            <li class="py-2"><a target="_blank" href="{{ $item['path'] }}">{{ $item['displayName'] }}</a></li>
+            <li class="pt-2"><a target="_blank" href="{{ $item['path'] }}">{{ $item['displayName'] }}</a></li>
         @endif
     @endforeach
 </ul>

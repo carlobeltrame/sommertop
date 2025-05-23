@@ -9,10 +9,10 @@
         Hier werden Dokumente für alle Teilnehmenden vom Topkurs hochgeladen. Falls dir etwas fehlt, melde dich bitte bei <a target="_blank" href="mailto:cosinus@gryfensee.ch">Cosinus</a>.
     </p>
     <ul>
-        <li class="py-2"><a target="_blank" href="https://pfadi.swiss/media/files/5d/2_ausbildungsblocke_de_rz_low_23.pdf" style="background-color: #64b145; color: white; padding: 0.5rem">Grüne Broschüre Ausbildungs<strong>blöcke</strong></a></li>
-        <li class="py-2"><a target="_blank" href="https://pfadi.swiss/media/files/51/1_ausbildungskurse_de_rz_low_23.pdf" style="background-color: #3e9ebf; color: white; padding: 0.5rem">Blaue Broschüre Ausbildungs<strong>kurse</strong></a></li>
-        <li class="py-2"><a target="_blank" href="https://pfadi.swiss/media/files/b4/3_rqf_de_rz_low_23.pdf" style="background-color: #f47d4c; color: white; padding: 0.5rem">Orange Broschüre RQF</a></li>
-        <li class="py-2"><a target="_blank" href="https://pfadi.swiss/media/files/6d/310702de_betreuen_in_der_pfadi_2024_web.pdf" style="background-color: #a4d9f5; color: #0e4b6f; padding: 0.5rem">Hellblaue Betreuungs-Broschüre</a></li>
+        <li class="pt-2"><a target="_blank" href="https://pfadi.swiss/media/files/5d/2_ausbildungsblocke_de_rz_low_23.pdf" style="background-color: #64b145; color: white; padding: 0.5rem">Grüne Broschüre Ausbildungs<strong>blöcke</strong></a></li>
+        <li class="pt-2"><a target="_blank" href="https://pfadi.swiss/media/files/51/1_ausbildungskurse_de_rz_low_23.pdf" style="background-color: #3e9ebf; color: white; padding: 0.5rem">Blaue Broschüre Ausbildungs<strong>kurse</strong></a></li>
+        <li class="pt-2"><a target="_blank" href="https://pfadi.swiss/media/files/b4/3_rqf_de_rz_low_23.pdf" style="background-color: #f47d4c; color: white; padding: 0.5rem">Orange Broschüre RQF</a></li>
+        <li class="pt-2"><a target="_blank" href="https://pfadi.swiss/media/files/6d/310702de_betreuen_in_der_pfadi_2024_web.pdf" style="background-color: #a4d9f5; color: #0e4b6f; padding: 0.5rem">Hellblaue Betreuungs-Broschüre</a></li>
     </ul>
 
     @include('contents', ['contents' => $contents])
