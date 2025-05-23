@@ -34,7 +34,7 @@ class FileService {
         $displayName = $this->displayName($file);
         if (Str::endsWith($file, ['.url.txt', '.link.txt'])) {
             $path = Storage::disk('content')->get($file);
-            $displayName = preg_replace('/\.(url|link)\.txt$/', '', $displayName);
+            $displayName = preg_replace('/\.(url|link)$/', '', $displayName);
         }
         if (Str::endsWith($file, ['.md', '.html'])) {
             $html = Storage::disk('content')->get($file);
@@ -105,7 +105,7 @@ class FileService {
     }
 
     public function displayName(string $filename): string {
-        return preg_replace('/^\d+_/', '', basename($filename));
+        return preg_replace('/^\d+_/', '', pathinfo($filename,PATHINFO_FILENAME));
     }
 
     public function sortName(string $filename): string {
