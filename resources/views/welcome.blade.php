@@ -16,6 +16,6 @@
     </ul>
     <h2 class="pt-4 font-bold">Viel Spass!</h2>
     <p class="pt-2">
-        Dein Kursteam: Chihiro, Cosinus, Fiore, Kibriti, Sepia, Sokrates, Syringa, Tesa, Tick
+        Dein Kursteam:<br/>Chihiro, Cosinus, Fiore, Kibriti, Sepia, Sokrates, Syringa, Tesa, Tick
     </p>
 @endsection
