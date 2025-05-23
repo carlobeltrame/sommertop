@@ -4,6 +4,13 @@
             </ul>
                 {!! $item['html'] !!}
             <ul>
+        @elseif(isset($item['type']) && $item['type'] === 'audio')
+            <li class="py-2">
+                <a target="_blank" href="{{ $item['path'] }}">{{ $item['displayName'] }}</a><br/>
+                <audio controls preload="none">
+                    <source src="{{ $item['path'] }}">
+                </audio>
+            </li>
         @else
             <li class="py-2"><a target="_blank" href="{{ $item['path'] }}">{{ $item['displayName'] }}</a></li>
         @endif

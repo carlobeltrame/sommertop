@@ -48,6 +48,14 @@ class FileService {
                 'html' => $html,
             ];
         }
+        if (Str::endsWith($file, ['.mp3', '.wav', '.m4a'])) {
+            return [
+                'type' => 'audio',
+                'displayName' => $displayName,
+                'sortName' => $this->sortName($file),
+                'path' => $path,
+            ];
+        }
         return [
             'displayName' => $displayName,
             'sortName' => $this->sortName($file),
