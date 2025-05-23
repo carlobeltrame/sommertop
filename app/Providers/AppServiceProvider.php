@@ -4,10 +4,12 @@ namespace App\Providers;
 
 use App\Providers\Dropbox\AutoRefreshingTokenProvider;
 use App\Providers\Dropbox\CachingDropboxClient;
+use App\View\Composers\NavigationViewComposer;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use League\Flysystem\Filesystem;
 use Spatie\FlysystemDropbox\DropboxAdapter;
@@ -43,5 +45,7 @@ class AppServiceProvider extends ServiceProvider
                 $config
             );
         });
+
+        View::composer('*', NavigationViewComposer::class);
     }
 }

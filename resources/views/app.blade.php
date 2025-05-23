@@ -35,7 +35,18 @@
         <!--Container-->
         <div class="container w-full flex flex-wrap mx-auto px-2 pt-8 lg:pt-16 mt-16">
             <nav id="sidebar" title="Sidebar" class="w-full lg:w-1/5 lg:px-6 text-xl text-gray-800 dark:text-gray-200 leading-normal">
-                $sidebar
+                <li class="py-2 md:my-0 hover:bg-purple-100 dark:hover:bg-purple-900 lg:hover:bg-transparent">
+                    <a href="/" class="block pl-4 align-middle text-gray-700 dark:text-gray-300 no-underline hover:text-purple-500 border-l-4 border-transparent lg:hover:border-gray-400 dark:lg:hover:border-gray-600 {{ $activePage === '/' ? 'lg:border-purple-500 lg:hover:border-purple-500' : '' }}">
+                        <span class="pb-1 md:pb-0 text-sm {{ $activePage === '/' ? ' text-gray-900 dark:text-gray-100 font-bold' : '' }}">Home</span>
+                    </a>
+                </li>
+                @foreach($menuEntries as $menuEntry)
+                    <li class="py-2 md:my-0 hover:bg-purple-100 dark:hover:bg-purple-900 lg:hover:bg-transparent">
+                        <a href="{{ $menuEntry['path'] }}" class="block pl-4 align-middle text-gray-700 dark:text-gray-300 no-underline hover:text-purple-500 border-l-4 border-transparent lg:hover:border-gray-400 dark:lg:hover:border-gray-600 {{ $activePage === $menuEntry['path'] ? 'lg:border-purple-500 lg:hover:border-purple-500' : '' }}">
+                            <span class="pb-1 md:pb-0 text-sm {{ $activePage === $menuEntry['path'] ? ' text-gray-900 dark:text-gray-100 font-bold' : '' }}">{{ $menuEntry['name'] }}</span>
+                        </a>
+                    </li>
+                @endforeach
             </nav>
             <div class="w-full lg:w-4/5 p-8 mt-6 lg:mt-0 text-gray-900 dark:text-gray-100 leading-normal bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-600 border-rounded">
                 <main class="prose dark:prose-invert">
