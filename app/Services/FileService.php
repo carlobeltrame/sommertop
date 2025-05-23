@@ -22,14 +22,16 @@ class FileService {
     public function directoryInfo(string|array $dir): array {
         if (is_array($dir)) return $dir;
         return [
-            'name' => basename($dir),
+            'displayName' => $this->displayName($dir),
+            'sortName' => $this->sortName($dir),
             'path' => $this->slug($dir),
         ];
     }
 
     public function fileInfo(string $file): array {
         return [
-            'name' => basename($file),
+            'displayName' => $this->displayName($file),
+            'sortName' => $this->sortName($file),
             'path' => $this->slug($file),
         ];
     }
@@ -73,6 +75,14 @@ class FileService {
                 return Str::slug($part, '-', 'de');
             });
         });
+    }
+
+    public function displayName(string $filename): string {
+        return preg_replace('/^\d+_/', '', basename($filename));
+    }
+
+    public function sortName(string $filename): string {
+        return strtolower(basename($filename));
     }
 
     protected function piecewise(string $string, string $separator, callable $operation): string {

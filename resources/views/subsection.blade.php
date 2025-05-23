@@ -1,2 +1,2 @@
-<{{ $contents['level'] }}>{{ $contents['name'] }}</{{ $contents['level'] }}>
+<{{ $contents['level'] }}>{{ $contents['displayName'] }}</{{ $contents['level'] }}>
 @include('contents', ['contents' => $contents])

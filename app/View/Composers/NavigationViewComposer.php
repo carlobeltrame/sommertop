@@ -21,7 +21,7 @@ class NavigationViewComposer
     {
         $view->with(
             'menuEntries',
-            collect([[ 'name' => 'Home', 'path' => '/' ]])
+            collect([[ 'displayName' => 'Home', 'sortName' => '', 'path' => '/' ]])
                 ->concat($this->files->directories('/'))
                 ->map(function($dir) {
                     return $this->files->directoryInfo($dir);

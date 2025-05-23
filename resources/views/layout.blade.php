@@ -40,7 +40,7 @@
                         <ul class="list-reset lg:flex justify-end items-center">
                             @foreach($menuEntries as $menuEntry)
                                 <li class="mr-3 py-2 lg:py-0">
-                                    <a class="inline-block py-2 px-4 no-underline {{ $activePage === $menuEntry['path'] ? 'text-gray-900 dark:text-gray-100 font-bold' : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:underline' }}" href="{{ $menuEntry['path'] }}">{{ $menuEntry['name'] }}</a>
+                                    <a class="inline-block py-2 px-4 no-underline {{ $activePage === $menuEntry['path'] ? 'text-gray-900 dark:text-gray-100 font-bold' : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:underline' }}" href="{{ $menuEntry['path'] }}">{{ $menuEntry['displayName'] }}</a>
                                 </li>
                             @endforeach
                         </ul>
@@ -56,7 +56,7 @@
                         @foreach($menuEntries as $menuEntry)
                             <li class="py-2 md:my-0 hover:bg-purple-100 dark:hover:bg-purple-900 lg:hover:bg-transparent">
                                 <a href="{{ $menuEntry['path'] }}" class="block pl-4 align-middle text-gray-700 dark:text-gray-300 no-underline hover:text-purple-500 border-l-4 border-transparent lg:hover:border-gray-400 dark:lg:hover:border-gray-600 {{ $activePage === $menuEntry['path'] ? 'lg:border-purple-500 lg:hover:border-purple-500' : '' }}">
-                                    <span class="pb-1 md:pb-0 text-sm {{ $activePage === $menuEntry['path'] ? 'text-gray-900 dark:text-gray-100 font-bold' : '' }}">{{ $menuEntry['name'] }}</span>
+                                    <span class="pb-1 md:pb-0 text-sm {{ $activePage === $menuEntry['path'] ? 'text-gray-900 dark:text-gray-100 font-bold' : '' }}">{{ $menuEntry['displayName'] }}</span>
                                 </a>
                             </li>
                         @endforeach

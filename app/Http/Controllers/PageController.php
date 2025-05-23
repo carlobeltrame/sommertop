@@ -24,10 +24,11 @@ class PageController extends Controller {
     public function home() {
         $dir = '/';
         return view('home', [
-            'name' => 'Home',
+            'displayName' => 'Home',
+            'sortName' => '',
             'contents' => array_merge(
                 $this->files->getContents($dir),
-                [ 'name' => 'Home', 'subsections' => [] ],
+                [ 'displayName' => 'Home', 'sortName' => '', 'subsections' => [] ],
             ),
         ]);
     }
@@ -36,9 +37,8 @@ class PageController extends Controller {
         $dir = $this->files->findDirBySlug($dirSlug);
         abort_unless(!!$dir, 404);
         return view('page', [
-            'name' => $dir,
+            ...$this->files->directoryInfo($dir),
             'contents' => $this->files->getContents($dir),
-            'slug' => $dirSlug,
         ]);
     }
 
