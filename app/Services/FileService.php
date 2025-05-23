@@ -72,7 +72,7 @@ class FileService {
 
     public function findFileBySlug(string $dir, string $pathSlug): ?string {
         $fullPathSlug = $this->slug($dir) . '/' . $pathSlug;
-        return $this->files($dir)
+        return $this->files($dir, true)
             ->first(function($file) use ($fullPathSlug) {
                 return $this->slug($file) === $fullPathSlug;
             });
@@ -85,11 +85,11 @@ class FileService {
         });
     }
 
-    protected function filterWithin(string $dir, Collection $files): Collection {
+    protected function filterWithin(string $dir, Collection $files, bool $deep = false): Collection {
         if (!Str::endsWith($dir, '/')) $dir = $dir . '/';
         $dir = preg_replace('/^\/*/', '', $dir); // remove any leading slashes
         $quotedDir = preg_quote($dir, '/');
-        $regexp = "/^{$quotedDir}[^\/]+$/";
+        $regexp = $deep ? "/^{$quotedDir}.+$/" : "/^{$quotedDir}[^\/]+$/";
         return $files->filter(function ($file) use ($regexp) {
             $result = preg_match($regexp, $file);
             return $result;
@@ -116,10 +116,11 @@ class FileService {
         return join($separator, array_map($operation, explode($separator, $string)));
     }
 
-    public function files($dirname) {
+    public function files($dirname, $deep = false) {
         return $this->filterWithin(
             $dirname,
-            $this->filterPublic(collect(Storage::disk('content')->allFiles()))
+            $this->filterPublic(collect(Storage::disk('content')->allFiles())),
+            $deep
         );
     }
 
