@@ -71,7 +71,7 @@ Then, you can visit your local application at http://localhost
 
 1.  **Organize Materials:** Create a main folder in your Dropbox that you've specified in the `.env` file as `STORAGE_DIR` (e.g., `Sommertopkurs 2025/sommertop.ch`).
 2.  Inside this target directory, create subfolders for different sections or topics of your course.
-3.  Upload files (PDFs, Word documents, images, presentations, etc.) into the relevant folders.
+3.  Upload files (PDFs, Word documents, images, presentations, etc.) into the relevant folders. If you set up the Dropbox webhooks above, this should more or less be reflected instantaneously. If this does not work, the site should be automatically updated after 5 minutes. If you need an instant update, you can click the purple icon in the top left.
 4.  To manually reorder the files and folders, prefix the filenames with 01_, 02_ and so on. The number prefix will not show on the website, but be used for ordering.
 5.  To link to an external website, create a text file with the file extension `.link.txt` and put the link into this file.
 6.  To include some text in a section, create a file with the file extension `.md` or `.html` and put the text into this file. In `.md` files, you can apply formatting such as **`**bold text**`**, _`_italic text_`_ or add enumeration lists.

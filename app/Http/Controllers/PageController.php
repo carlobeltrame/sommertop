@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Services\FileService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,6 +19,7 @@ class PageController extends Controller {
         }
 
         Cache::flush();
+        Cache::forever('last_cache_flush', Carbon::now()->toDateTimeString());
         return response()->noContent();
     }
 
