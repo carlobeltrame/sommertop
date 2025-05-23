@@ -4,6 +4,7 @@ namespace App\Services;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use League\CommonMark\CommonMarkConverter;
 
 class FileService {
 
@@ -34,6 +35,18 @@ class FileService {
         if (Str::endsWith($file, ['.url.txt', '.link.txt'])) {
             $path = Storage::disk('content')->get($file);
             $displayName = preg_replace('/\.(url|link)\.txt$/', '', $displayName);
+        }
+        if (Str::endsWith($file, ['.md', '.html'])) {
+            $html = Storage::disk('content')->get($file);
+            if (Str::endsWith($file, '.md')) {
+                $converter = new CommonMarkConverter();
+                $html = $converter->convert($html);
+            }
+            return [
+                'type' => 'html',
+                'sortName' => $this->sortName($file),
+                'html' => $html,
+            ];
         }
         return [
             'displayName' => $displayName,

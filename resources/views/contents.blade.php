@@ -1,6 +1,12 @@
 <ul>
     @foreach(collect($contents['files'])->sortBy('sortName') as $item)
-        <li class="py-2"><a target="_blank" href="{{ $item['path'] }}">{{ $item['displayName'] }}</a></li>
+        @if(isset($item['type']) && $item['type'] === 'html')
+            </ul>
+                {!! $item['html'] !!}
+            <ul>
+        @else
+            <li class="py-2"><a target="_blank" href="{{ $item['path'] }}">{{ $item['displayName'] }}</a></li>
+        @endif
     @endforeach
 </ul>
 

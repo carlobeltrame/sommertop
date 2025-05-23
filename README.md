@@ -68,7 +68,8 @@ Then, you can visit your local application at http://localhost
 3.  Upload files (PDFs, Word documents, images, presentations, etc.) into the relevant folders.
 4.  To manually reorder the files and folders, prefix the filenames with 01_, 02_ and so on. The number prefix will not show on the website, but be used for ordering.
 5.  To link to an external website, create a text file with the file extension `.link.txt` and put the link into this file.
-6.  The Sommertop application will automatically reflect these changes on the `sommertop.ch` website.
+6.  To include some text in a section, create a file with the file extension `.md` or `.html` and put the text into this file. In `.md` files, you can apply formatting such as **`**bold text**`**, _`_italic text_`_ or add enumeration lists.
+7.  The Sommertop application will automatically reflect these changes on the `sommertop.ch` website.
 
 ### For Course Participants
 

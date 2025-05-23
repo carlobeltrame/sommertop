@@ -22,14 +22,14 @@ class PageController extends Controller {
     }
 
     public function home() {
-        $dir = '/';
         return view('home', [
             'displayName' => 'Home',
             'sortName' => '',
-            'contents' => array_merge(
-                $this->files->getContents($dir),
-                [ 'displayName' => 'Home', 'sortName' => '', 'subsections' => [] ],
-            ),
+            'contents' => [
+                'displayName' => 'Home',
+                'files' => $this->files->files('/')->map(function ($file) { return $this->fileInfo($file); }),
+                'sortName' => '', 'subsections' => []
+            ],
         ]);
     }
 
