@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Providers\Dropbox\AutoRefreshingTokenProvider;
+use App\Providers\Dropbox\CachingDropboxClient;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\Cache;
@@ -34,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
             );
 
             $adapter = new DropboxAdapter(
-                new DropboxClient($tokenProvider),
+                new CachingDropboxClient($tokenProvider),
                 $config['root']
             );
 
