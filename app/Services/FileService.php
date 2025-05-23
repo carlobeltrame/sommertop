@@ -29,10 +29,16 @@ class FileService {
     }
 
     public function fileInfo(string $file): array {
+        $path = $this->slug($file);
+        $displayName = $this->displayName($file);
+        if (Str::endsWith($file, ['.url.txt', '.link.txt'])) {
+            $path = Storage::disk('content')->get($file);
+            $displayName = preg_replace('/\.(url|link)\.txt$/', '', $displayName);
+        }
         return [
-            'displayName' => $this->displayName($file),
+            'displayName' => $displayName,
             'sortName' => $this->sortName($file),
-            'path' => $this->slug($file),
+            'path' => $path,
         ];
     }
 

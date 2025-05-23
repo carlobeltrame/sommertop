@@ -67,7 +67,8 @@ Then, you can visit your local application at http://localhost
 2.  Inside this target directory, create subfolders for different sections or topics of your course.
 3.  Upload files (PDFs, Word documents, images, presentations, etc.) into the relevant folders.
 4.  To manually reorder the files and folders, prefix the filenames with 01_, 02_ and so on. The number prefix will not show on the website, but be used for ordering.
-5.  The Sommertop application will automatically reflect these changes on the `sommertop.ch` website.
+5.  To link to an external website, create a text file with the file extension `.link.txt` and put the link into this file.
+6.  The Sommertop application will automatically reflect these changes on the `sommertop.ch` website.
 
 ### For Course Participants
 
