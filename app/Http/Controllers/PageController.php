@@ -21,6 +21,17 @@ class PageController extends Controller {
         return response()->noContent();
     }
 
+    public function home() {
+        $dir = '/';
+        return view('home', [
+            'name' => 'Home',
+            'contents' => array_merge(
+                $this->files->getContents($dir),
+                [ 'name' => 'Home', 'subsections' => [] ],
+            ),
+        ]);
+    }
+
     public function list(string $dirSlug) {
         $dir = $this->files->findDirBySlug($dirSlug);
         abort_unless(!!$dir, 404);

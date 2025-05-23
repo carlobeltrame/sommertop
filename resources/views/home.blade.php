@@ -14,6 +14,9 @@
         <li class="py-2"><a target="_blank" href="https://pfadi.swiss/media/files/b4/3_rqf_de_rz_low_23.pdf" style="background-color: #f47d4c; color: white; padding: 0.5rem">Orange Broschüre RQF</a></li>
         <li class="py-2"><a target="_blank" href="https://pfadi.swiss/media/files/6d/310702de_betreuen_in_der_pfadi_2024_web.pdf" style="background-color: #a4d9f5; color: #0e4b6f; padding: 0.5rem">Hellblaue Betreuungs-Broschüre</a></li>
     </ul>
+
+    @include('contents', ['contents' => $contents])
+
     <h2 class="pt-4 font-bold">Viel Spass!</h2>
     <p class="pt-2">
         Dein Kursteam:<br/>Chihiro, Cosinus, Fiore, Kibriti, Sepia, Sokrates, Syringa, Tesa, Tick
