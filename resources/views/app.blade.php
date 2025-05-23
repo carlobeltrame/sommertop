@@ -38,9 +38,6 @@
                     </button>
                     <div class="w-full flex-grow lg:flex  lg:content-center lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 z-20" id="nav-content">
                         <ul class="list-reset lg:flex justify-end items-center">
-                            <li class="mr-3 py-2 lg:py-0">
-                                <a class="inline-block py-2 px-4 no-underline {{ $activePage === '/' ? 'text-gray-900 dark:text-gray-100 font-bold' : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:underline' }}" href="/">Home</a>
-                            </li>
                             @foreach($menuEntries as $menuEntry)
                                 <li class="mr-3 py-2 lg:py-0">
                                     <a class="inline-block py-2 px-4 no-underline {{ $activePage === $menuEntry['path'] ? 'text-gray-900 dark:text-gray-100 font-bold' : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:underline' }}" href="{{ $menuEntry['path'] }}">{{ $menuEntry['name'] }}</a>
@@ -56,11 +53,6 @@
             <nav id="sidebar" title="Sidebar" class="w-full lg:w-1/5 lg:px-6 text-xl text-gray-800 dark:text-gray-200 leading-normal">
                 <div class="w-full sticky inset-0 hidden h-64 lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 border border-gray-400 dark:border-gray-600 lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20" style="top:5em;" id="menu-content">
                     <ul class="list-reset">
-                        <li class="py-2 md:my-0 hover:bg-purple-100 dark:hover:bg-purple-900 lg:hover:bg-transparent">
-                            <a href="/" class="block pl-4 align-middle text-gray-700 dark:text-gray-300 no-underline hover:text-purple-500 border-l-4 border-transparent lg:hover:border-gray-400 dark:lg:hover:border-gray-600 {{ $activePage === '/' ? 'lg:border-purple-500 lg:hover:border-purple-500' : '' }}">
-                                <span class="pb-1 md:pb-0 text-sm {{ $activePage === '/' ? 'text-gray-900 dark:text-gray-100 font-bold' : '' }}">Home</span>
-                            </a>
-                        </li>
                         @foreach($menuEntries as $menuEntry)
                             <li class="py-2 md:my-0 hover:bg-purple-100 dark:hover:bg-purple-900 lg:hover:bg-transparent">
                                 <a href="{{ $menuEntry['path'] }}" class="block pl-4 align-middle text-gray-700 dark:text-gray-300 no-underline hover:text-purple-500 border-l-4 border-transparent lg:hover:border-gray-400 dark:lg:hover:border-gray-600 {{ $activePage === $menuEntry['path'] ? 'lg:border-purple-500 lg:hover:border-purple-500' : '' }}">

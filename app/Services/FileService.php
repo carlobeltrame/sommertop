@@ -18,7 +18,8 @@ class FileService {
         ]);
     }
 
-    public function directoryInfo(string $dir): array {
+    public function directoryInfo(string|array $dir): array {
+        if (is_array($dir)) return $dir;
         return [
             'name' => basename($dir),
             'path' => $this->slug($dir),
