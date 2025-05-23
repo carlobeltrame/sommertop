@@ -10,9 +10,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
 use League\Flysystem\Filesystem;
-use Spatie\Dropbox\Client as DropboxClient;
 use Spatie\FlysystemDropbox\DropboxAdapter;
-
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Storage::extend('dropbox', function(Application $app, array $config) {
             $tokenProvider = new AutoRefreshingTokenProvider(
-                Cache::get('dropbox_access_token', 'none') // reuse cached access token if available
+                Cache::store('file')->get('dropbox_access_token', 'none') // reuse cached access token if available
             );
 
             $adapter = new DropboxAdapter(

@@ -1,11 +1,25 @@
 <?php
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PageController extends Controller {
+
+    public function clearCache(Request $request) {
+        if ($request->has('challenge')) {
+            header('Content-Type: text/plain');
+            header('X-Content-Type-Options: nosniff');
+            die($request->query('challenge'));
+        }
+
+        Cache::flush();
+        return response()->noContent();
+    }
+
     public function list(string $dirSlug) {
         $dir = $this->findDirBySlug($dirSlug);
         return view('page', [

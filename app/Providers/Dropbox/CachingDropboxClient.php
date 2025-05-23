@@ -19,7 +19,7 @@ use Spatie\Dropbox\Exceptions\BadRequest;
 
 class CachingDropboxClient extends Client
 {
-    protected int $ttl = 60;
+    protected int $ttl = 60*60*12; // cache for 12 hours
 
     /**
      * Search a file or folder in the user's Dropbox.

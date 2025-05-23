@@ -34,6 +34,7 @@ cd sommertop
 1. Create a new app with scoped access and access to "Full Dropbox" (this is needed to expose a shared folder)
 1. Give it a fitting name, e.g. sommertop Webseite
 1. Leaving the app in developer mode is fine for now
+1. If you are deploying the application: Add the URL https://sommertop.ch/f5 as Webhook URL (or adjust it to where you are hosting it)
 1. On the "Permissions" tab, set the "account_info.read", "files.metadata.read" and "files.content.read" permissions, and submit using the link at the bottom of the screen
 1. Back on the "Settings" tab, find your **App key** and **App secret**
 1. Visit https://www.dropbox.com/oauth2/authorizeclient_id=<YOUR_APP_KEY>&response_type=code&token_access_type=offline and confirm that your app may access your Dropbox account. Get your temporary access code.

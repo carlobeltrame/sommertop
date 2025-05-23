@@ -30,7 +30,7 @@ class AutoRefreshingTokenProvider implements RefreshableTokenProvider
         }
 
         $this->access_token = $client->json('access_token');
-        Cache::put('dropbox_access_token', $this->access_token, 3*60*60); // cache new token for 3 hours (TTL of access tokens is around 4 hours)
+        Cache::store('file')->put('dropbox_access_token', $this->access_token, 3*60*60); // cache new token for 3 hours (TTL of access tokens is around 4 hours)
         return true; // confirm token was refreshed
     }
 
