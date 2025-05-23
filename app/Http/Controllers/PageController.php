@@ -25,7 +25,7 @@ class PageController extends Controller {
         $dir = $this->files->findDirBySlug($dirSlug);
         abort_unless(!!$dir, 404);
         return view('page', [
-            'title' => $dir,
+            'name' => $dir,
             'contents' => $this->files->getContents($dir),
             'slug' => $dirSlug,
         ]);

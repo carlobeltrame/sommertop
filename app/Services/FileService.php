@@ -11,6 +11,7 @@ class FileService {
         $topLevelFiles = $this->files($dirname);
         $subsections = $this->directories($dirname);
         return array_merge($this->directoryInfo($dirname), [
+            'level' => 'h' . $level,
             'files' => $topLevelFiles->map(function ($file) { return $this->fileInfo($file); }),
             'subsections' => $subsections->map(function ($subsection) use($level) {
                 return $this->getContents($subsection, $level + 1);
