@@ -21,6 +21,7 @@ Follow these steps to set up the Sommertop application:
 ### 1. Prerequisites
 
 * Docker
+* curl
 * A Dropbox account
 
 ### 2. Clone the Repository
@@ -37,7 +38,7 @@ cd sommertop
 1. If you are deploying the application: Add the URL https://sommertop.ch/f5 as Webhook URL (or adjust it to where you are hosting it)
 1. On the "Permissions" tab, set the "account_info.read", "files.metadata.read" and "files.content.read" permissions, and submit using the link at the bottom of the screen
 1. Back on the "Settings" tab, find your **App key** and **App secret**
-1. Visit https://www.dropbox.com/oauth2/authorizeclient_id=<YOUR_APP_KEY>&response_type=code&token_access_type=offline and confirm that your app may access your Dropbox account. Get your temporary access code.
+1. Visit https://www.dropbox.com/oauth2/authorize?client_id=<YOUR_APP_KEY>&response_type=code&token_access_type=offline and confirm that your app may access your Dropbox account. Get your temporary access code.
 1. `curl https://api.dropbox.com/oauth2/token -d code=<ACCESS_CODE> -d grant_type=authorization_code -u <APP_KEY>:<APP_SECRET>` and inside the response get your **refresh token**.
 
 ### 4. Environment Configuration
@@ -51,6 +52,11 @@ Open the `.env` file and update the following sections:
 * `DROPBOX_APP_KEY=` fill from above
 * `DROPBOX_APP_SECRET=` fill from above
 * `DROPBOX_REFRESH_TOKEN=` fill from above
+
+### 5. Set up required laravel settings
+```bash
+docker compose run --entrypoint "php artisan key:generate" php
+```
 
 ### 5. Run using docker
 ```bash
