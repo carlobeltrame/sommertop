@@ -36,6 +36,10 @@ class FileService {
             $path = Storage::disk('content')->get($file);
             $displayName = preg_replace('/\.(url|link)$/', '', $displayName);
         }
+        if (Str::endsWith($file, ['.web'])) {
+            $path = json_decode(Storage::disk('content')->get($file))->url;
+            $displayName = preg_replace('/\.(url|link)$/', '', $displayName);
+        }
         if (Str::endsWith($file, ['.md', '.html'])) {
             $html = Storage::disk('content')->get($file);
             if (Str::endsWith($file, '.md')) {
