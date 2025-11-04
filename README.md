@@ -1,6 +1,6 @@
 # sommertop.ch - course material website
 
-**Sommertop** is a Laravel application designed to bridge the gap between Dropbox and the sommertop.ch course website for the Swiss scouting movement. It allows course leaders to easily manage and publish course materials by simply organizing files and folders within a designated Dropbox directory. The application then dynamically reads this directory and presents its contents (files and subdirectories) as an accessible website for course participants.
+**sommertop** is a Laravel application designed to bridge the gap between Dropbox and the sommertop.ch course website for the Swiss scouting movement. It allows course leaders to easily manage and publish course materials by simply organizing files and folders within a designated Dropbox directory. The application then dynamically reads this directory and presents its contents (files and subdirectories) as an accessible website for course participants.
 
 ## Purpose
 
